@@ -1,0 +1,317 @@
+.app-shell {
+  display: grid;
+  gap: 14px;
+  padding: 14px;
+}
+
+.dashboard {
+  display: grid;
+  grid-template-columns: minmax(250px, 320px) minmax(0, 1fr);
+  gap: 12px;
+  align-items: start;
+}
+
+.entry-card,
+.invoice-card {
+  border: 1px solid var(--panel-border);
+  border-radius: 12px;
+  background: var(--panel-bg);
+  box-shadow: var(--panel-shadow);
+  padding: 14px;
+}
+
+.entry-card {
+  background: rgba(241, 246, 244, 0.92);
+  box-shadow: none;
+}
+
+.invoice-card {
+  background: rgba(241, 246, 244, 0.92);
+  box-shadow: none;
+}
+
+.entry-card {
+  display: grid;
+  gap: 10px;
+}
+
+.section-heading {
+  display: grid;
+  gap: 4px;
+}
+
+.section-tag {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: rgba(47, 36, 29, 0.08);
+  color: var(--muted);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.field {
+  display: grid;
+  gap: 4px;
+}
+
+.field span,
+.summary-grid span,
+.invoice-total span,
+.timeline-index,
+.timeline-header span {
+  color: var(--muted);
+  font-size: 0.72rem;
+}
+
+.field input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--soft-border);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.78);
+  color: var(--text);
+  font: inherit;
+  font-size: 0.84rem;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.field input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(231, 120, 86, 0.12);
+}
+
+.field input::placeholder {
+  color: var(--placeholder);
+}
+
+.helper-copy {
+  display: grid;
+  gap: 4px;
+  padding: 10px 12px;
+  border: 1px solid var(--soft-border);
+  border-radius: 10px;
+  background: var(--card-bg);
+}
+
+.helper-copy p {
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.primary-button {
+  border: 0;
+  border-radius: 10px;
+  padding: 10px 12px;
+  background: #2f241d;
+  color: #fffaf4;
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.primary-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 24px rgba(47, 36, 29, 0.16);
+}
+
+.primary-button:focus-visible {
+  outline: 3px solid rgba(231, 120, 86, 0.16);
+  outline-offset: 2px;
+}
+
+.invoice-card {
+  display: grid;
+  gap: 12px;
+}
+
+.invoice-header,
+.timeline-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  gap: 10px;
+}
+
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 9px;
+  border-radius: 999px;
+  background: rgba(9, 96, 91, 0.12);
+  color: var(--success);
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.invoice-total {
+  display: grid;
+  gap: 5px;
+  padding: 12px;
+  border-radius: 12px;
+  background: linear-gradient(
+    135deg,
+    rgba(16, 19, 29, 0.96),
+    rgba(30, 39, 56, 0.96)
+  );
+  color: #fefaf4;
+}
+
+.invoice-total span {
+  color: rgba(254, 250, 244, 0.68);
+}
+
+.invoice-total strong {
+  font-size: clamp(1.3rem, 2vw, 1.9rem);
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.summary-grid article,
+.invoice-row,
+.empty-state {
+  border: 1px solid var(--soft-border);
+  border-radius: 10px;
+  background: var(--card-bg);
+}
+
+.summary-grid article {
+  display: grid;
+  gap: 5px;
+  padding: 10px 12px;
+}
+
+.summary-grid strong,
+.timeline-value,
+.invoice-row strong,
+.empty-state strong {
+  font-size: 0.88rem;
+}
+
+.timeline {
+  display: grid;
+  gap: 8px;
+}
+
+.timeline h3 {
+  margin: 0;
+}
+
+.timeline-list {
+  display: grid;
+  gap: 8px;
+}
+
+.invoice-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  gap: 10px;
+  padding: 10px 12px;
+}
+
+.invoice-row-main {
+  min-width: 0;
+}
+
+.invoice-row strong {
+  display: block;
+  margin-top: 2px;
+}
+
+.invoice-row-meta {
+  display: grid;
+  gap: 2px;
+  justify-items: center;
+  align-items: center;
+  color: #ffffff;
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+.timeline-value {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  align-items: center;
+  justify-content: center;
+  min-width: 132px;
+  color: var(--text-strong);
+  font-weight: 700;
+  text-align: center;
+  align-self: center;
+}
+
+.timeline-value-total {
+  font-size: 0.88rem;
+  line-height: 1.1;
+}
+
+.timeline-value-installment {
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+.empty-state {
+  display: grid;
+  gap: 4px;
+  padding: 12px;
+}
+
+.empty-state p {
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+@media (max-width: 960px) {
+  .dashboard {
+    grid-template-columns: 1fr;
+  }
+
+  .summary-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .app-shell {
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .simple-top,
+  .entry-card,
+  .invoice-card {
+    padding: 12px;
+  }
+
+  .invoice-header,
+  .timeline-header,
+  .invoice-row {
+    flex-direction: column;
+    align-items: start;
+  }
+
+  .invoice-row-meta {
+    justify-items: start;
+  }
+}
