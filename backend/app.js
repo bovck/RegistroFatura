@@ -19,6 +19,13 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use((error, req, res, next) => {
+  const status = error.statusCode || 500;
+  const message = error.message;
+  const errorData = error.data;
+  res.status(status).json({ message: message });
+});
+
 app.use(faturaRouter);
 app.use(userRouter);
 

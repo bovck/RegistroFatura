@@ -29,8 +29,16 @@
   min-height: 580px;
   padding: 28px;
   background:
-    radial-gradient(circle at top left, rgba(231, 120, 86, 0.34), transparent 28%),
-    radial-gradient(circle at bottom right, rgba(9, 96, 91, 0.22), transparent 34%),
+    radial-gradient(
+      circle at top left,
+      rgba(231, 120, 86, 0.34),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at bottom right,
+      rgba(9, 96, 91, 0.22),
+      transparent 34%
+    ),
     linear-gradient(145deg, rgba(47, 36, 29, 0.98), rgba(82, 54, 44, 0.94));
   color: #fffaf4;
 }
@@ -122,56 +130,54 @@
 .dashboard {
   display: grid;
   grid-template-columns: minmax(250px, 320px) minmax(0, 1fr);
-  gap: 12px;
+  gap: 24px;
   align-items: start;
 }
 
 .entry-card,
 .invoice-card {
-  border: 1px solid var(--panel-border);
-  border-radius: 12px;
-  background: var(--panel-bg);
-  box-shadow: var(--panel-shadow);
-  padding: 14px;
-}
-
-.entry-card {
-  background: rgba(241, 246, 244, 0.92);
-  box-shadow: none;
-}
-
-.invoice-card {
-  background: rgba(241, 246, 244, 0.92);
-  box-shadow: none;
+  border: 1px solid rgba(47, 36, 29, 0.08);
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.78);
+  box-shadow: 0 18px 40px rgba(47, 36, 29, 0.06);
+  padding: 24px;
 }
 
 .entry-card {
   display: grid;
-  gap: 10px;
+  gap: 18px;
+  background: rgba(255, 255, 255, 0.82);
+}
+
+.invoice-card {
+  display: grid;
+  gap: 20px;
+  background: rgba(255, 255, 255, 0.72);
 }
 
 .section-heading {
   display: grid;
-  gap: 4px;
+  gap: 6px;
 }
 
 .section-tag {
   display: inline-flex;
   align-items: center;
   width: fit-content;
-  padding: 4px 8px;
+  padding: 5px 10px;
   border-radius: 999px;
-  background: rgba(47, 36, 29, 0.08);
+  border: 1px solid rgba(47, 36, 29, 0.08);
+  background: rgba(255, 255, 255, 0.58);
   color: var(--muted);
-  font-size: 0.62rem;
+  font-size: 0.58rem;
   font-weight: 700;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
 }
 
 .field {
   display: grid;
-  gap: 4px;
+  gap: 8px;
 }
 
 .field span,
@@ -180,27 +186,29 @@
 .timeline-index,
 .timeline-header span {
   color: var(--muted);
-  font-size: 0.72rem;
+  font-size: 0.7rem;
 }
 
 .field input {
   width: 100%;
-  padding: 10px 12px;
-  border: 1px solid var(--soft-border);
-  border-radius: 10px;
-  background: rgba(255, 255, 255, 0.78);
+  padding: 13px 14px;
+  border: 1px solid rgba(47, 36, 29, 0.1);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.94);
   color: var(--text);
   font: inherit;
   font-size: 0.84rem;
   transition:
     border-color 0.2s ease,
-    box-shadow 0.2s ease;
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
 }
 
 .field input:focus {
   outline: none;
-  border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(231, 120, 86, 0.12);
+  border-color: rgba(47, 36, 29, 0.28);
+  box-shadow: 0 0 0 4px rgba(47, 36, 29, 0.06);
+  background: #ffffff;
 }
 
 .field input::placeholder {
@@ -209,11 +217,11 @@
 
 .helper-copy {
   display: grid;
-  gap: 4px;
-  padding: 10px 12px;
-  border: 1px solid var(--soft-border);
-  border-radius: 10px;
-  background: var(--card-bg);
+  gap: 6px;
+  padding: 14px;
+  border: 1px solid rgba(47, 36, 29, 0.06);
+  border-radius: 18px;
+  background: rgba(47, 36, 29, 0.03);
 }
 
 .helper-copy p {
@@ -223,9 +231,9 @@
 
 .primary-button {
   border: 0;
-  border-radius: 10px;
-  padding: 10px 12px;
-  background: #2f241d;
+  border-radius: 14px;
+  padding: 13px 16px;
+  background: var(--text-strong);
   color: #fffaf4;
   font: inherit;
   font-size: 0.82rem;
@@ -233,12 +241,14 @@
   cursor: pointer;
   transition:
     transform 0.15s ease,
-    box-shadow 0.15s ease;
+    box-shadow 0.15s ease,
+    background-color 0.15s ease;
 }
 
 .primary-button:hover {
   transform: translateY(-1px);
-  box-shadow: 0 12px 24px rgba(47, 36, 29, 0.16);
+  background: #18110d;
+  box-shadow: 0 10px 24px rgba(47, 36, 29, 0.12);
 }
 
 .primary-button:focus-visible {
@@ -256,61 +266,57 @@
   display: flex;
   justify-content: space-between;
   align-items: start;
-  gap: 10px;
+  gap: 16px;
 }
 
 .status-pill {
   display: inline-flex;
   align-items: center;
-  padding: 6px 9px;
+  padding: 7px 10px;
   border-radius: 999px;
-  background: rgba(9, 96, 91, 0.12);
-  color: var(--success);
-  font-size: 0.72rem;
+  border: 1px solid rgba(47, 36, 29, 0.08);
+  background: rgba(255, 255, 255, 0.56);
+  color: var(--text-strong);
+  font-size: 0.7rem;
   font-weight: 700;
 }
 
 .invoice-total {
   display: grid;
-  gap: 5px;
-  padding: 12px;
-  border-radius: 12px;
-  background: linear-gradient(
-    135deg,
-    rgba(16, 19, 29, 0.96),
-    rgba(30, 39, 56, 0.96)
-  );
-  color: #fefaf4;
+  gap: 8px;
+  padding: 0 0 20px;
+  border-bottom: 1px solid rgba(47, 36, 29, 0.08);
+  color: var(--text-strong);
 }
 
 .invoice-total span {
-  color: rgba(254, 250, 244, 0.68);
+  color: var(--muted);
 }
 
 .invoice-total strong {
-  font-size: clamp(1.3rem, 2vw, 1.9rem);
-  line-height: 1;
-  letter-spacing: -0.04em;
+  font-size: clamp(1.7rem, 3vw, 2.5rem);
+  line-height: 0.95;
+  letter-spacing: -0.06em;
 }
 
 .summary-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 8px;
+  gap: 12px;
 }
 
 .summary-grid article,
 .invoice-row,
 .empty-state {
-  border: 1px solid var(--soft-border);
-  border-radius: 10px;
-  background: var(--card-bg);
+  border: 1px solid rgba(47, 36, 29, 0.06);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.62);
 }
 
 .summary-grid article {
   display: grid;
-  gap: 5px;
-  padding: 10px 12px;
+  gap: 6px;
+  padding: 14px 16px;
 }
 
 .summary-grid strong,
@@ -322,7 +328,7 @@
 
 .timeline {
   display: grid;
-  gap: 8px;
+  gap: 14px;
 }
 
 .timeline h3 {
@@ -331,15 +337,15 @@
 
 .timeline-list {
   display: grid;
-  gap: 8px;
+  gap: 10px;
 }
 
 .invoice-row {
   display: flex;
   justify-content: space-between;
-  align-items: start;
-  gap: 10px;
-  padding: 10px 12px;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 18px;
 }
 
 .invoice-row-main {
@@ -348,29 +354,29 @@
 
 .invoice-row strong {
   display: block;
-  margin-top: 2px;
+  margin-top: 4px;
 }
 
 .invoice-row-meta {
   display: grid;
-  gap: 2px;
-  justify-items: center;
+  gap: 4px;
+  justify-items: start;
   align-items: center;
-  color: #ffffff;
-  font-size: 0.8rem;
-  text-align: center;
+  color: var(--muted);
+  font-size: 0.74rem;
+  text-align: left;
 }
 
 .timeline-value {
   display: flex;
   flex-direction: column;
-  gap: 2px;
-  align-items: center;
+  gap: 4px;
+  align-items: end;
   justify-content: center;
-  min-width: 132px;
+  min-width: 148px;
   color: var(--text-strong);
   font-weight: 700;
-  text-align: center;
+  text-align: right;
   align-self: center;
 }
 
@@ -436,8 +442,8 @@
 
 .empty-state {
   display: grid;
-  gap: 4px;
-  padding: 12px;
+  gap: 6px;
+  padding: 20px;
 }
 
 .empty-state p {
@@ -457,14 +463,14 @@
 
 @media (max-width: 640px) {
   .app-shell {
-    gap: 10px;
-    padding: 10px;
+    gap: 16px;
+    padding: 16px;
   }
 
   .simple-top,
   .entry-card,
   .invoice-card {
-    padding: 12px;
+    padding: 18px;
   }
 
   .invoice-header,

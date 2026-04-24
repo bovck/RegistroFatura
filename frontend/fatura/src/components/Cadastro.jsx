@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 function Cadastro() {
   const navigate = useNavigate();
+  const [errorData, setErrorData] = useState("");
   const [formData, setFormData] = useState({
     nome: "",
     sobrenome: "",
@@ -19,28 +20,30 @@ function Cadastro() {
     }));
   }
 
-  function handleSubmit(event) {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const cadastroData = {
-      nome: formData.nome.trim(),
-      sobrenome: formData.sobrenome.trim(),
-      email: formData.email.trim(),
+      nome: formData.nome,
+      sobrenome: formData.sobrenome,
+      email: formData.email,
       senha: formData.senha,
     };
 
-    fetch("http://localhost:3000/cadastro", {
+    const res = await fetch("http://localhost:3000/cadastro", {
       method: "post",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(cadastroData),
-    }).then((res) => {
-      console.log(res);
     });
 
-    // localStorage.setItem("cadastroUsuario", JSON.stringify(cadastroData));
+    const data = await res.json();
+    console.log(data);
+
     navigate("/");
-  }
+
+    // localStorage.setItem("cadastroUsuario", JSON.stringify(cadastroData));
+  };
 
   return (
     <main className="auth-page">
@@ -134,6 +137,8 @@ function Cadastro() {
               Finalizar cadastro
             </button>
           </form>
+
+          {errorData && <p>{errorData}</p>}
 
           <p className="auth-footer">
             Ja possui conta? <Link to="/">Entrar agora</Link>
