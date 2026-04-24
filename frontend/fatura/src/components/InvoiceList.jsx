@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import InvoiceRow from "./InvoiceRow";
 
 function InvoiceList({
@@ -10,6 +11,23 @@ function InvoiceList({
   getInstallmentAmountInCents,
 }) {
   // Para pegar os invoices ou seja getFatura vai ser aqui
+  const url = "http://localhost:3000/index";
+
+  useEffect(() => {
+    fetch(url, {
+      method: "get",
+    })
+      .then((res) => {
+        if (res.status === 401) {
+          throw new Error("Sessão expirada.");
+        }
+        res.json();
+      })
+      .then((result) => {
+        console.log(result);
+      });
+  }, []);
+
   return (
     <section className="invoice-card" aria-label="Lista de faturas">
       <div className="invoice-header">
