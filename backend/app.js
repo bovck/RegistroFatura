@@ -3,6 +3,7 @@ import "dotenv/config";
 import express from "express";
 
 import faturaRouter from "./routes/fatura.js";
+import userRouter from "./routes/user.js";
 
 const app = express();
 
@@ -19,6 +20,7 @@ app.use((req, res, next) => {
 });
 
 app.use(faturaRouter);
+app.use(userRouter);
 
 try {
   const result = await mongoose.connect(process.env.DB_URI);

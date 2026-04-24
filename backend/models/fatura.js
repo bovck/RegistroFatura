@@ -14,6 +14,10 @@ const faturaSchema = new Schema({
     type: Date,
     required: true,
   },
+  criador: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
+  },
 });
 
 const Fatura = mongoose.model("Fatura", faturaSchema);
