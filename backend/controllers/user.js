@@ -1,5 +1,6 @@
 import User from "../models/user.js";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
 
 //
 // CADASTRANDO USUARIO
@@ -29,7 +30,45 @@ export const postCadastro = async (req, res, next) => {
     res.status(201).json({
       message: "conta criada com sucesso",
     });
-  } catch (err) {
-    next(err);
+  } catch (error) {
+    next(error);
   }
+};
+
+//
+// Logando Usuário
+//
+export const postLogin = async (req, res, next) => {
+  const email = req.body.email;
+  const senha = req.body.senha;
+
+  const user = await User.findOne({ email: email });
+
+  if (!user) {
+    const error = new Error("Usuário inválido");
+    error.statusCode = 500;
+    throw error;
+  }
+  const isEqual = await bcrypt.compare(senha, user.senha);
+
+  if (!isEqual) {
+    const error = new Error("Usuário inválido");
+    error.statusCode = 500;
+    throw error;
+  }
+
+  const token = jwt.sign(
+    {
+      email: user.email,
+      userId: user._id.toString(),
+    },
+    "secret",
+    { expiresIn: "1h" },
+  );
+
+  res.status(200).json({
+    message: "usuário logado",
+    token: token,
+    userId: user._id.toString(),
+  });
 };

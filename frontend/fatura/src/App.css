@@ -451,6 +451,11 @@
   font-size: 0.78rem;
 }
 
+.error {
+  color: red;
+  font-size: 1rem;
+}
+
 @media (max-width: 960px) {
   .dashboard {
     grid-template-columns: 1fr;

@@ -1,12 +1,35 @@
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
 
 function Login() {
-  const navigate = useNavigate()
+  const [formData, setFormData] = useState({ email: "", senha: "" });
 
-  function handleSubmit(event) {
-    event.preventDefault()
-    navigate('/faturas')
+  const navigate = useNavigate();
+
+  function handleChange(e) {
+    const { value, name } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   }
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    const res = await fetch("http://localhost:3000/login", {
+      method: "post",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
+
+    const data = await res.json();
+
+    console.log(data);
+
+    navigate("/faturas");
+  };
 
   return (
     <main className="auth-page">
@@ -44,12 +67,26 @@ function Login() {
           <form className="auth-form" onSubmit={handleSubmit}>
             <label className="field">
               <span>E-mail</span>
-              <input type="email" placeholder="voce@exemplo.com" required />
+              <input
+                type="email"
+                name="email"
+                value={formData.email}
+                placeholder="voce@exemplo.com"
+                onChange={handleChange}
+                required
+              />
             </label>
 
             <label className="field">
               <span>Senha</span>
-              <input type="password" placeholder="Digite sua senha" required />
+              <input
+                type="password"
+                name="senha"
+                onChange={handleChange}
+                value={formData.senha}
+                placeholder="Digite sua senha"
+                required
+              />
             </label>
 
             <button className="primary-button auth-submit" type="submit">
@@ -63,7 +100,7 @@ function Login() {
         </div>
       </section>
     </main>
-  )
+  );
 }
 
-export default Login
+export default Login;

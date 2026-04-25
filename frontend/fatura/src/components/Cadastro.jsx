@@ -38,9 +38,16 @@ function Cadastro() {
     });
 
     const data = await res.json();
+
     console.log(data);
 
-    navigate("/");
+    if (res.status === 500) {
+      setErrorData(data.message);
+    }
+
+    if (res.status === 201) {
+      navigate("/");
+    }
 
     // localStorage.setItem("cadastroUsuario", JSON.stringify(cadastroData));
   };
@@ -138,7 +145,7 @@ function Cadastro() {
             </button>
           </form>
 
-          {errorData && <p>{errorData}</p>}
+          {errorData && <p className="error">{errorData}</p>}
 
           <p className="auth-footer">
             Ja possui conta? <Link to="/">Entrar agora</Link>
