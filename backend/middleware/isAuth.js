@@ -21,6 +21,6 @@ export default async (req, res, next) => {
     throw error;
   }
 
-  // req.userId = decodedToken.userId;
+  req.userId = decodedToken.userId;
   next();
 };
