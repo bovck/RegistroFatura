@@ -10,15 +10,16 @@ const faturaSchema = new Schema({
     type: Number,
     required: true,
   },
-  month: {
-    type: Date,
+  months: {
+    type: Number,
     required: true,
+    min: 1,
   },
   criador: {
     type: Schema.Types.ObjectId,
     ref: "User",
   },
-});
+}, { timestamps: true });
 
 const Fatura = mongoose.model("Fatura", faturaSchema);
 export default Fatura;

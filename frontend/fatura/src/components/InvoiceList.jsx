@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import InvoiceRow from "./InvoiceRow";
 
 function InvoiceList({
@@ -9,30 +8,10 @@ function InvoiceList({
   draftPayoffLabel,
   formatCurrencyFromCents,
   getInstallmentAmountInCents,
-  token,
+  onUpdateInvoice,
+  onDeleteInvoice,
+  requestError,
 }) {
-  // Para pegar os invoices ou seja getFatura vai ser aqui
-  const url = "http://localhost:3000/index";
-
-  useEffect(() => {
-    fetch(url, {
-      method: "get",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + token,
-      },
-    })
-      .then((res) => {
-        if (res.status === 401) {
-          throw new Error("Sessão expirada.");
-        }
-        res.json();
-      })
-      .then((result) => {
-        console.log("oi");
-      });
-  }, [token]);
-
   return (
     <section className="invoice-card" aria-label="Lista de faturas">
       <div className="invoice-header">
@@ -69,6 +48,8 @@ function InvoiceList({
           <span>Total e parcela mensal</span>
         </div>
 
+        {requestError ? <p className="error">{requestError}</p> : null}
+
         <div className="timeline-list">
           {invoices.length === 0 ? (
             <div className="empty-state">
@@ -82,6 +63,8 @@ function InvoiceList({
                 invoice={invoice}
                 formatCurrencyFromCents={formatCurrencyFromCents}
                 getInstallmentAmountInCents={getInstallmentAmountInCents}
+                onUpdateInvoice={onUpdateInvoice}
+                onDeleteInvoice={onDeleteInvoice}
               />
             ))
           )}

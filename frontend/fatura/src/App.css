@@ -341,11 +341,33 @@
 }
 
 .invoice-row {
+  display: grid;
+  gap: 12px;
+  padding: 12px;
+}
+
+.invoice-row.is-expanded {
+  border-color: rgba(231, 120, 86, 0.24);
+  background: rgba(255, 252, 247, 0.94);
+}
+
+.invoice-row-trigger {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 16px;
-  padding: 16px 18px;
+  width: 100%;
+  padding: 4px 6px;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.invoice-row-trigger:focus-visible {
+  outline: 3px solid rgba(231, 120, 86, 0.16);
+  outline-offset: 2px;
 }
 
 .invoice-row-main {
@@ -378,6 +400,58 @@
   font-weight: 700;
   text-align: right;
   align-self: center;
+}
+
+.invoice-editor {
+  display: grid;
+  gap: 12px;
+  padding-top: 6px;
+  border-top: 1px solid rgba(47, 36, 29, 0.08);
+}
+
+.invoice-editor-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.ghost-button,
+.danger-button {
+  border-radius: 14px;
+  padding: 13px 16px;
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    background-color 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.ghost-button {
+  border: 1px solid rgba(47, 36, 29, 0.12);
+  background: rgba(255, 255, 255, 0.8);
+  color: var(--text-strong);
+}
+
+.danger-button {
+  border: 1px solid rgba(177, 61, 39, 0.18);
+  background: rgba(231, 120, 86, 0.1);
+  color: #9e3d29;
+}
+
+.ghost-button:hover,
+.danger-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 24px rgba(47, 36, 29, 0.08);
+}
+
+.ghost-button:focus-visible,
+.danger-button:focus-visible {
+  outline: 3px solid rgba(231, 120, 86, 0.16);
+  outline-offset: 2px;
 }
 
 @media (max-width: 860px) {
@@ -416,7 +490,7 @@
 
   .invoice-header,
   .timeline-header,
-  .invoice-row {
+  .invoice-row-trigger {
     flex-direction: column;
   }
 
@@ -481,7 +555,7 @@
 
   .invoice-header,
   .timeline-header,
-  .invoice-row {
+  .invoice-row-trigger {
     flex-direction: column;
     align-items: start;
   }

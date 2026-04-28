@@ -1,4 +1,5 @@
 import { useState } from "react";
+
 function InvoiceForm({
   creditor,
   amount,
@@ -7,7 +8,6 @@ function InvoiceForm({
   onCreditorChange,
   onAmountChange,
   onMonthsChange,
-  onSubmit,
   formatCurrencyFromCents,
   token,
   handleInvoice,
@@ -42,25 +42,23 @@ function InvoiceForm({
         },
         body: JSON.stringify(faturaData),
       });
-      if (res.status === 401) {
+      if (!res.ok) {
         throw new Error("Não foi possível registrar a fatura");
       }
       const data = await res.json();
-      console.log(data);
-
-      handleInvoice(
-        data.fatura.creditor,
-        data.fatura.amount,
-        data.fatura.month,
-        "oi",
-      );
+      handleInvoice({
+        id: data.fatura._id ?? data.fatura.id,
+        creditor: data.fatura.creditor ?? creditor.trim(),
+        amount: Number(data.fatura.amount ?? amount),
+        months: Number(data.fatura.months ?? months),
+      });
     } catch (err) {
-      console.log(err);
+      setErrorData(err.message);
     }
   };
 
   return (
-    <form className="entry-card" onSubmit={onSubmit}>
+    <form className="entry-card" onSubmit={handleAddFatura}>
       <div className="section-heading">
         <span className="section-tag">Nova fatura</span>
         <h2>Adicionar cobranca</h2>
@@ -114,11 +112,7 @@ function InvoiceForm({
         </p>
       </div>
 
-      <button
-        className="primary-button"
-        type="submit"
-        onClick={handleAddFatura}
-      >
+      <button className="primary-button" type="submit">
         Adicionar fatura
       </button>
     </form>
