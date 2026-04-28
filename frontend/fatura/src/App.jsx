@@ -5,8 +5,9 @@ import InvoiceDashboard from "./components/InvoiceDashboard";
 import Login from "./components/Login";
 import "./App.css";
 
+const tokenout = localStorage.getItem("token");
 function App() {
-  const [token, setToken] = useState("");
+  const [token, setToken] = useState(tokenout);
 
   const handleToken = (t) => setToken(t);
 

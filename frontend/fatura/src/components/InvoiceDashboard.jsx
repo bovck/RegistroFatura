@@ -47,7 +47,7 @@ function InvoiceDashboard({ token }) {
   const [invoices, setInvoices] = useState(initialInvoices);
 
   const handleInvoice = (creditor, amount, month) => {
-    console.log(creditor, amount, formatMonthLabel(month));
+    console.log(creditor, amount, month);
   };
 
   const parsedAmount = Number(amount);

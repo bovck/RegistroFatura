@@ -32,6 +32,7 @@ function Login({ handleToken }) {
 
     if (res.status === 200) {
       handleToken(data.token);
+      localStorage.setItem("token", data.token);
       navigate("/faturas");
     }
   };

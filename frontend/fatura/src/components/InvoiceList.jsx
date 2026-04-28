@@ -31,7 +31,7 @@ function InvoiceList({
       .then((result) => {
         console.log("oi");
       });
-  }, []);
+  }, [token]);
 
   return (
     <section className="invoice-card" aria-label="Lista de faturas">
