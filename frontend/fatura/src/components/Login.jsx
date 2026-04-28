@@ -1,8 +1,9 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 
-function Login() {
+function Login({ handleToken }) {
   const [formData, setFormData] = useState({ email: "", senha: "" });
+  const [errorData, setErrorData] = useState("");
 
   const navigate = useNavigate();
 
@@ -25,10 +26,14 @@ function Login() {
     });
 
     const data = await res.json();
+    if (res.status === 500) {
+      setErrorData(data.message);
+    }
 
-    console.log(data);
-
-    navigate("/faturas");
+    if (res.status === 200) {
+      handleToken(data.token);
+      navigate("/faturas");
+    }
   };
 
   return (
@@ -93,6 +98,7 @@ function Login() {
               Entrar
             </button>
           </form>
+          {errorData && <p className="error">{errorData}</p>}
 
           <p className="auth-footer">
             Ainda nao tem conta? <Link to="/cadastro">Criar cadastro</Link>

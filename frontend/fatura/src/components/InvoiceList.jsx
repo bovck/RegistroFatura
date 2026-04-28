@@ -9,6 +9,7 @@ function InvoiceList({
   draftPayoffLabel,
   formatCurrencyFromCents,
   getInstallmentAmountInCents,
+  token,
 }) {
   // Para pegar os invoices ou seja getFatura vai ser aqui
   const url = "http://localhost:3000/index";
@@ -16,6 +17,10 @@ function InvoiceList({
   useEffect(() => {
     fetch(url, {
       method: "get",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token,
+      },
     })
       .then((res) => {
         if (res.status === 401) {
@@ -24,7 +29,7 @@ function InvoiceList({
         res.json();
       })
       .then((result) => {
-        console.log(result);
+        console.log("oi");
       });
   }, []);
 

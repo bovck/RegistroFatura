@@ -1,3 +1,4 @@
+import { useState } from "react";
 function InvoiceForm({
   creditor,
   amount,
@@ -8,12 +9,23 @@ function InvoiceForm({
   onMonthsChange,
   onSubmit,
   formatCurrencyFromCents,
+  token,
+  handleInvoice,
 }) {
   const url = "http://localhost:3000/index";
 
-  const handleAddFatura = (e) => {
+  const [errorData, setErrorData] = useState("");
+
+  const handleAddFatura = async (e) => {
     e.preventDefault();
-    console.log("funcionei?");
+
+    if (creditor === "" || amount === "" || months === "") {
+      const error = new Error("Preencha todos os campos");
+      setErrorData(error.message);
+      throw error;
+    }
+
+    setErrorData("");
 
     const faturaData = {
       creditor: creditor,
@@ -21,27 +33,30 @@ function InvoiceForm({
       months: months,
     };
 
-    console.log(creditor, amount, months);
-
-    fetch(url, {
-      method: "post",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(faturaData),
-    })
-      .then((res) => {
-        if (res.status === 401) {
-          throw new Error("deu merda");
-        }
-        return res.json();
-      })
-      .then((result) => {
-        console.log(result.message);
-      })
-      .catch((err) => {
-        console.log(err);
+    try {
+      const res = await fetch(url, {
+        method: "post",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token,
+        },
+        body: JSON.stringify(faturaData),
       });
+      if (res.status === 401) {
+        throw new Error("Não foi possível registrar a fatura");
+      }
+      const data = await res.json();
+      console.log(data);
+
+      handleInvoice(
+        data.fatura.creditor,
+        data.fatura.amount,
+        data.fatura.month,
+        "oi",
+      );
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -58,6 +73,7 @@ function InvoiceForm({
           value={creditor}
           onChange={onCreditorChange}
           placeholder="Ex.: Ana Ferreira"
+          required
         />
       </label>
 
@@ -70,6 +86,7 @@ function InvoiceForm({
           value={amount}
           onChange={onAmountChange}
           placeholder="0,00"
+          required
         />
       </label>
 
@@ -82,8 +99,11 @@ function InvoiceForm({
           value={months}
           onChange={onMonthsChange}
           placeholder="1"
+          required
         />
       </label>
+
+      {errorData && <p className="error">{errorData}</p>}
 
       <div className="helper-copy">
         <p>
