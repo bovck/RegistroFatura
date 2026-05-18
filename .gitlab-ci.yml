@@ -10,7 +10,9 @@ frontend:
     - npm --version
     - npm ci
     - npm run build
-    - ls -la
+  artifacts:
+    paths:
+      - frontend/fatura/dist/
 
 backend:
   image: node:22-alpine
@@ -18,4 +20,3 @@ backend:
   script:
     - cd backend
     - npm install
-    - ls -la
