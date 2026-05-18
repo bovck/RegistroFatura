@@ -1,6 +1,7 @@
 stages:
   - build
   - test
+  - unit
 
 frontend:
   image: node:22-alpine
@@ -27,3 +28,11 @@ frontend-test:
   stage: test
   script:
     - test -f frontend/fatura/dist/index.html
+
+unit-tests:
+  image: node:22-alpine
+  stage: unit
+  script:
+    - cd backend
+    - npm ci
+    - npm test
