@@ -12,7 +12,8 @@ frontend:
     - npm run build
   artifacts:
     paths:
-      - frontend/fatura/dist/
+      - cd frontend/fatura
+      - dist/
 
 backend:
   image: node:22-alpine
