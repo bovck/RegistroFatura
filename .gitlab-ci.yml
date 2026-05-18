@@ -5,7 +5,7 @@ frontend:
   image: node:22-alpine
   stage: build
   script:
-    - cd frontend
+    - cd frontend/fatura
     - node --version
     - npm --version
     - npm ci
