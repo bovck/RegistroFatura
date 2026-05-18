@@ -1,5 +1,6 @@
 stages:
   - build
+  - test
 
 frontend:
   image: node:22-alpine
@@ -20,3 +21,9 @@ backend:
   script:
     - cd backend
     - npm install
+
+frontend-test:
+  image: node:22-alpine
+  stage: test
+  script:
+    - test -f frontend/fatura/dist/index.html
