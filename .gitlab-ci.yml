@@ -1,5 +1,21 @@
-test_npm:
+stages:
+  - build
+
+frontend:
   image: node:22-alpine
+  stage: build
   script:
+    - cd frontend
     - node --version
     - npm --version
+    - npm ci
+    - npm run build
+    - ls -la
+
+backend:
+  image: node:22-alpine
+  stage: build
+  script:
+    - cd backend
+    - npm install
+    - ls -la
