@@ -1,7 +1,6 @@
 stages:
   - build
   - test
-  - unit
 
 frontend:
   image: node:22-alpine
@@ -31,8 +30,11 @@ frontend-test:
 
 unit-tests:
   image: node:22-alpine
-  stage: unit
+  stage: test
   script:
     - cd backend
     - npm ci
     - npm test
+  artifacts:
+    reports:
+      junit: ./backend/junit.xml

@@ -5,6 +5,7 @@
     "express": "^5.2.1",
     "jsonwebtoken": "^9.0.3",
     "mocha": "^11.7.5",
+    "mocha-junit-reporter": "^2.2.1",
     "mongoose": "^9.5.0",
     "nodemon": "^3.1.14"
   },
@@ -17,8 +18,9 @@
   "main": "app.js",
   "type": "module",
   "scripts": {
+    "start": "nodemon app.js",
     "test": "mocha",
-    "start": "nodemon app.js"
+    "test:ci": "mocha test --reporter mocha-junit-reporter --reporter-options mochaFile=./junit.xml"
   },
   "author": "Gustavo",
   "license": "ISC"

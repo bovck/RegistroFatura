@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Mocha Tests" time="0.525" tests="8" failures="0">
+  <testsuite name="Root Suite" timestamp="2026-05-19T00:43:37" tests="0" time="0.000" failures="0">
+  </testsuite>
+  <testsuite name="controllers/user" timestamp="2026-05-19T00:43:37" tests="3" file="/home/bovck/Projects/RegistroFatura/backend/test/tests.js" time="0.521" failures="0">
+    <testcase name="controllers/user postCadastro cria um usuário quando o e-mail não existe" time="0.175" classname="postCadastro cria um usuário quando o e-mail não existe">
+    </testcase>
+    <testcase name="controllers/user postCadastro envia erro ao next quando o e-mail já existe" time="0.001" classname="postCadastro envia erro ao next quando o e-mail já existe">
+    </testcase>
+    <testcase name="controllers/user postLogin retorna token quando as credenciais são válidas" time="0.344" classname="postLogin retorna token quando as credenciais são válidas">
+    </testcase>
+  </testsuite>
+  <testsuite name="controllers/fatura" timestamp="2026-05-19T00:43:38" tests="5" file="/home/bovck/Projects/RegistroFatura/backend/test/tests.js" time="0.003" failures="0">
+    <testcase name="controllers/fatura postFatura cria uma fatura válida para o usuário" time="0.001" classname="postFatura cria uma fatura válida para o usuário">
+    </testcase>
+    <testcase name="controllers/fatura postFatura envia erro ao next quando os dados são inválidos" time="0.000" classname="postFatura envia erro ao next quando os dados são inválidos">
+    </testcase>
+    <testcase name="controllers/fatura getFatura busca as faturas do usuário ordenadas por data" time="0.000" classname="getFatura busca as faturas do usuário ordenadas por data">
+    </testcase>
+    <testcase name="controllers/fatura putFatura atualiza uma fatura existente" time="0.000" classname="putFatura atualiza uma fatura existente">
+    </testcase>
+    <testcase name="controllers/fatura deleteFatura remove uma fatura do usuário" time="0.001" classname="deleteFatura remove uma fatura do usuário">
+    </testcase>
+  </testsuite>
+</testsuites>
