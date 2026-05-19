@@ -54,19 +54,19 @@ export const postFatura = async (req, res, next) => {
   }
 };
 
-export const getFatura = async (req, res, next) => {
-  try {
-    const faturas = await Fatura.find({ criador: req.userId }).sort({
-      createdAt: -1,
-    });
-    res.status(200).json({
-      message: "As faturas foram buscadas com sucesso",
-      faturas,
-    });
-  } catch (error) {
-    next(error);
-  }
-};
+// export const getFatura = async (req, res, next) => {
+//   try {
+//     const faturas = await Fatura.find({ criador: req.userId }).sort({
+//       createdAt: -1,
+//     });
+//     res.status(200).json({
+//       message: "As faturas foram buscadas com sucesso",
+//       faturas,
+//     });
+//   } catch (error) {
+//     next(error);
+//   }
+// };
 
 export const putFatura = async (req, res, next) => {
   try {
