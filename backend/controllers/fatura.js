@@ -25,34 +25,34 @@ function validateFaturaInput(creditor, amount, months) {
   };
 }
 
-export const postFatura = async (req, res, next) => {
-  try {
-    const { creditor, amount, months } = validateFaturaInput(
-      req.body.creditor,
-      req.body.amount,
-      req.body.months,
-    );
-    const fatura = new Fatura({
-      creditor,
-      amount,
-      months,
-      criador: req.userId,
-    });
-
-    await fatura.save();
-    const user = await User.findById(req.userId);
-    user.faturas.push(fatura);
-    await user.save();
-
-    res.status(201).json({
-      message: "Produto criado",
-      fatura: fatura,
-      creator: { _id: user._id, name: user.name },
-    });
-  } catch (err) {
-    next(err);
-  }
-};
+// export const postFatura = async (req, res, next) => {
+//   try {
+//     const { creditor, amount, months } = validateFaturaInput(
+//       req.body.creditor,
+//       req.body.amount,
+//       req.body.months,
+//     );
+//     const fatura = new Fatura({
+//       creditor,
+//       amount,
+//       months,
+//       criador: req.userId,
+//     });
+//
+//     await fatura.save();
+//     const user = await User.findById(req.userId);
+//     user.faturas.push(fatura);
+//     await user.save();
+//
+//     res.status(201).json({
+//       message: "Produto criado",
+//       fatura: fatura,
+//       creator: { _id: user._id, name: user.name },
+//     });
+//   } catch (err) {
+//     next(err);
+//   }
+// };
 
 export const getFatura = async (req, res, next) => {
   try {
