@@ -35,6 +35,7 @@ unit-tests:
     - cd backend
     - npm ci
     - npm test
+    - npm run test:ci
   artifacts:
     when: always
     reports:
