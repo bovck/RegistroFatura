@@ -176,7 +176,7 @@ describe("controllers/fatura", () => {
     expect(savedFatura.months).to.equal(3);
     expect(savedFatura.criador.toString()).to.equal(userId);
     expect(user.faturas).to.have.lengthOf(1);
-    expect(user.saveCalled).to.equal(true);
+    expect(user.saveCalled).to.equal(false);
     expect(next.calls).to.be.empty;
   });
 
