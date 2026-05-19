@@ -1,4 +1,5 @@
-<<<<<<< HEAD
+<<<<<<<<< HEAD
+
 # RegistroFatura
 
 Aplicacao full stack para cadastro, visualizacao e gerenciamento de faturas.
