@@ -6,7 +6,7 @@ frontend:
   image: node:22-alpine
   stage: build
   script:
-    - cd frontend/fatura
+    - cd ./frontend/fatura
     - node --version
     - npm --version
     - npm ci
@@ -19,7 +19,7 @@ backend:
   image: node:22-alpine
   stage: build
   script:
-    - cd backend
+    - cd ./backend
     - npm install
 
 frontend-test:
@@ -40,3 +40,25 @@ unit-tests:
     when: always
     reports:
       junit: ./backend/junit.xml
+
+eslint-front:
+  image: node:22-alpine
+  stage: .pre
+  script:
+    - cd ./frontend/fatura/
+    - npm ci
+    - npm run lint 
+  artifacts:
+    reports:
+      codequality: gl-codequality.json
+
+eslint-back:
+  image: node:22-alpine
+  stage: .pre
+  script:
+    - cd ./backend/
+    - npm ci
+    - npm run lint 
+  artifacts:
+    reports:
+      codequality: gl-codequality.json

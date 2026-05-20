@@ -22,7 +22,7 @@ app.use((req, res, next) => {
 app.use(faturaRouter);
 app.use(userRouter);
 
-app.use((error, req, res, next) => {
+app.use((error, _req, res) => {
   const status = error.statusCode || 500;
   const message = error.message;
   res.status(status).json({ message });

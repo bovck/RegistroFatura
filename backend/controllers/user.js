@@ -38,7 +38,7 @@ export const postCadastro = async (req, res, next) => {
 //
 // Logando Usuário
 //
-export const postLogin = async (req, res, next) => {
+export const postLogin = async (req, res) => {
   const email = req.body.email;
   const senha = req.body.senha;
 
