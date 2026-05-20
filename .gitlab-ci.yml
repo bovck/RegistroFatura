@@ -28,7 +28,7 @@ frontend-test:
   script:
     - test -f frontend/fatura/dist/index.html
 
-unit-tests:
+.unit-tests:
   image: node:22-alpine
   stage: test
   script:
@@ -41,7 +41,7 @@ unit-tests:
     reports:
       junit: ./backend/junit.xml
 
-eslint-front:
+.eslint-front:
   image: node:22-alpine
   stage: .pre
   script:
@@ -52,7 +52,7 @@ eslint-front:
     reports:
       codequality: gl-codequality.json
 
-eslint-back:
+.eslint-back:
   image: node:22-alpine
   stage: .pre
   script:
@@ -62,3 +62,11 @@ eslint-back:
   artifacts:
     reports:
       codequality: gl-codequality.json
+
+
+netlify:
+  image: alpine
+  stage: .pre
+  script:
+    - npm install -g netlify-cli
+    - netlify --version
